@@ -1,28 +1,28 @@
 package io.moqit.service.content;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 public class EmailContentSource implements ContentSource {
 
-    private final static List<String> EMAIL_DOMAINS = List.of(
-        "gmail.com",
-        "yahoo.com",
-        "hotmail.com"
-    );
+  private final static List<String> EMAIL_DOMAINS = List.of(
+    "gmail.com",
+    "yahoo.com",
+    "hotmail.com"
+  );
 
-    private final ContentSource firstNameSource;
-    private final ContentSource lastNameSource;
+  private final ContentSource firstNameSource;
+  private final ContentSource lastNameSource;
 
-    @Override
-    public String getOne() {
-        return firstNameSource.getOne() + "." + lastNameSource.getOne() + getRandomEmailDomain();
-    }
+  @Override
+  public String getOne() {
+    return firstNameSource.getOne() + "." + lastNameSource.getOne() + getRandomEmailDomain();
+  }
 
-    private String getRandomEmailDomain() {
-        return EMAIL_DOMAINS.get((int) (Math.random() * EMAIL_DOMAINS.size()));
-    }
+  private String getRandomEmailDomain() {
+    return EMAIL_DOMAINS.get((int) (Math.random() * EMAIL_DOMAINS.size()));
+  }
 
 }

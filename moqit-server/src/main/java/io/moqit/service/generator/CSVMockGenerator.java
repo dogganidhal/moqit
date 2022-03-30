@@ -7,8 +7,8 @@ import static io.moqit.service.generator.MockGenerator.CSV;
 
 @Service(CSV)
 public class CSVMockGenerator implements MockGenerator {
-    @Override
-    public String generate(Schema schema) {
-        return "";
-    }
+  @Override
+  public String generate(Schema schema) {
+    return "";
+  }
 }

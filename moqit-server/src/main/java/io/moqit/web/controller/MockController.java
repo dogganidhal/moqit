@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/mock")
 public class MockController {
 
-    private final MockService mockService;
+  private final MockService mockService;
 
-    @PostMapping
-    public String generateMock(@RequestBody GenerateMock request) {
-        return mockService.generate(request);
-    }
+  @PostMapping
+  public String generateMock(@RequestBody GenerateMock request) {
+    return mockService.generate(request);
+  }
 
 }

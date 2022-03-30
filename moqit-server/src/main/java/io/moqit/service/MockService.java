@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class MockService {
 
-    private final MockGenerator.Factory mockGeneratorFactory;
+  private final MockGenerator.Factory mockGeneratorFactory;
 
-    public String generate(GenerateMock request) {
-        return mockGeneratorFactory.create(request.getType()).generate(request.getSchema());
-    }
+  public String generate(GenerateMock request) {
+    return mockGeneratorFactory.create(request.getType()).generate(request.getSchema());
+  }
 
 }

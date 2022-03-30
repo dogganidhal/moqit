@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ContentGenerator {
 
-    private final ContentSource.Registry contentSourceRegistry;
+  private final ContentSource.Registry contentSourceRegistry;
 
-    public Object generate(ContentType contentType) {
-        return contentSourceRegistry.resolve(contentType).getOne();
-    }
+  public Object generate(ContentType contentType) {
+    return contentSourceRegistry.resolve(contentType).getOne();
+  }
 
 }

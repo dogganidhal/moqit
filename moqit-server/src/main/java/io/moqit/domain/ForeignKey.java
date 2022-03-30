@@ -8,6 +8,6 @@ import lombok.Value;
 @Value
 @Builder
 public class ForeignKey {
-    String table;
-    String column;
+  String table;
+  String column;
 }

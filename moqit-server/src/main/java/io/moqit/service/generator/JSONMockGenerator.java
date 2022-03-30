@@ -7,8 +7,8 @@ import static io.moqit.service.generator.MockGenerator.JSON;
 
 @Service(JSON)
 public class JSONMockGenerator implements MockGenerator {
-    @Override
-    public String generate(Schema schema) {
-        return "";
-    }
+  @Override
+  public String generate(Schema schema) {
+    return "";
+  }
 }

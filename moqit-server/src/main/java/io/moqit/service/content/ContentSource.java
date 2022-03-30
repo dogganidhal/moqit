@@ -1,40 +1,40 @@
 package io.moqit.service.content;
 
-import java.util.Collection;
-import java.util.stream.Stream;
-
 import io.moqit.domain.ContentType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.stream.Stream;
+
 public interface ContentSource {
 
-    @Component
-    @AllArgsConstructor
-    final class Registry {
+  String getOne();
 
-        private static final String BEAN_SUFFIX = "_content_source";
+  default Collection<String> getMultiple(int count) {
+    return Stream
+      .generate(this::getOne)
+      .limit(count)
+      .toList();
+  }
 
-        private final ConfigurableBeanFactory beanFactory;
+  @Component
+  @AllArgsConstructor
+  final class Registry {
 
-        public void register(ContentType type, ContentSource source) {
-            beanFactory.registerSingleton(type.name().toLowerCase() + BEAN_SUFFIX, source);
-        }
+    private static final String BEAN_SUFFIX = "_content_source";
 
-        public ContentSource resolve(ContentType type) {
-            return beanFactory.getBean(type.name().toLowerCase() + BEAN_SUFFIX, ContentSource.class);
-        }
+    private final ConfigurableBeanFactory beanFactory;
 
+    public void register(ContentType type, ContentSource source) {
+      beanFactory.registerSingleton(type.name().toLowerCase() + BEAN_SUFFIX, source);
     }
 
-    String getOne();
-
-    default Collection<String> getMultiple(int count) {
-        return Stream
-            .generate(this::getOne)
-            .limit(count)
-            .toList();
+    public ContentSource resolve(ContentType type) {
+      return beanFactory.getBean(type.name().toLowerCase() + BEAN_SUFFIX, ContentSource.class);
     }
+
+  }
 
 }

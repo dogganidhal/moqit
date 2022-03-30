@@ -10,8 +10,8 @@ import lombok.Value;
 @Builder
 public class GenerateMock {
 
-    Schema schema;
-    MockType type;
+  Schema schema;
+  MockType type;
 
 }
 

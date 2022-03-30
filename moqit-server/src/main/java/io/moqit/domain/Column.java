@@ -8,14 +8,14 @@ import lombok.Value;
 @Value
 @Builder
 public class Column {
-    String name;
-    @Builder.Default
-    boolean primary = false;
-    @Builder.Default
-    boolean nullable = false;
-    @Builder.Default
-    boolean unique = false;
-    ColumnType type;
-    ContentType contentType;
-    ForeignKey references;
+  String name;
+  @Builder.Default
+  boolean primary = false;
+  @Builder.Default
+  boolean nullable = false;
+  @Builder.Default
+  boolean unique = false;
+  ColumnType type;
+  ContentType contentType;
+  ForeignKey references;
 }
