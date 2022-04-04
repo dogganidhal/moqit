@@ -6,7 +6,7 @@ import io.moqit.service.content.ContentSource;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class JSONMockGenerator implements MockGenerator {
+public class PGMockGenerator implements MockGenerator {
 
   private final ContentSource.Registry contentSourceRegistry;
 

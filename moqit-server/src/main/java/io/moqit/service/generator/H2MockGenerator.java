@@ -5,8 +5,9 @@ import io.moqit.domain.Table;
 import io.moqit.service.content.ContentSource;
 import lombok.AllArgsConstructor;
 
+
 @AllArgsConstructor
-public class JSONMockGenerator implements MockGenerator {
+public class H2MockGenerator implements MockGenerator {
 
   private final ContentSource.Registry contentSourceRegistry;
 

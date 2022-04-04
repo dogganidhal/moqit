@@ -2,33 +2,31 @@ package io.moqit.service.generator;
 
 import io.moqit.domain.MockType;
 import io.moqit.domain.Schema;
+import io.moqit.domain.Table;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public interface MockGenerator {
 
-  String JSON = "json_mock_generator";
-  String CSV = "csv_mock_generator";
-
   String generate(Schema schema);
+
+  String generate(Table table);
 
   @Component
   @AllArgsConstructor
-  final class Factory {
+  final class Registry {
 
-    private final static Map<MockType, String> GENERATOR_MAP = new HashMap<>() {{
-      put(MockType.JSON, JSON);
-      put(MockType.CSV, CSV);
-    }};
+    private static final String BEAN_SUFFIX = "_mock_generator";
 
-    private final BeanFactory beanFactory;
+    private final ConfigurableBeanFactory beanFactory;
 
-    public MockGenerator create(MockType type) {
-      return beanFactory.getBean(MockGenerator.class, GENERATOR_MAP.get(type));
+    public void register(MockType type, MockGenerator generator) {
+      beanFactory.registerSingleton(type.name().toLowerCase() + BEAN_SUFFIX, generator);
+    }
+
+    public MockGenerator resolve(MockType type) {
+      return beanFactory.getBean(type.name().toLowerCase() + BEAN_SUFFIX, MockGenerator.class);
     }
 
   }
